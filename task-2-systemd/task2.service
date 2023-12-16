@@ -1,0 +1,16 @@
+[Unit]
+Description=Telegram bot 'systemd hw'
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=devops-hw
+WorkingDirectory=/home/devops-hw/devops-2023/task-2-systemd
+ExecStart=/usr/bin/python3 /home/devops-hw/devops-2023/task-2-systemd/bot/main.py
+ExecAfter=/usr/sbin/logrotate /home/devops-hw/devops-2023/task-2-systemd/logrotate.conf --state /home/devops-hw/devops-2023/task-2-systemd/logrotate-state
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
